@@ -1,0 +1,43 @@
+body {
+  background-image: url("https://image.api.playstation.com/vulcan/ap/rnd/202109/1321/y7iyxoBE8VKotN89QCFhLgLM.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 36pt;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15%;
+}
+
+.btn {
+  height: 200px;
+  width: 200px;
+  font-size: 24pt;
+  background-color: red;
+  border: none;
+  /* padding: 5px; */
+  box-shadow: -3px 3px 4px gray;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: darkred;
+}
+
+.btn:active {
+  box-shadow: 0 0 2px darkslategrey;
+  transform: translateY(2px);
+}

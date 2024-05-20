@@ -4,7 +4,7 @@ import pg from "pg";
 import cors from "cors";
 
 const app = express();
-const port = 3000;
+const port = 4000;
 env.config({ path: "../.env" });
 
 const db = new pg.Client({
@@ -24,6 +24,14 @@ app.use(cors());
 app.get("/", async (req, res) => {
     const stats = await db.query("SELECT * FROM stats");
     res.json(stats.rows);
+});
+
+//add an entry
+app.post("/add", async (req, res) => {
+    const { track, car, lap_time } = req.body;
+
+    const entry = await db.query("INSERT INTO stats (track, car, lap_time) VALUES ($1, $2, $3)", [track, car, lap_time]);
+    res.json(entry);
 });
 
 app.listen(port, () => {
