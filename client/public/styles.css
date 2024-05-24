@@ -7,6 +7,7 @@ body {
   color: white;
 }
 
+/* Home page styles */
 .title {
   text-align: center;
   margin-top: 50px;
@@ -17,27 +18,36 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 15%;
+  margin-top: 12%;
 }
 
-.btn {
-  height: 200px;
-  width: 200px;
+.btn-group button {
+  height: 250px;
+  width: 250px;
   font-size: 24pt;
-  background-color: red;
+  background-image: url("Screenshot\ 2024-05-19\ at\ 9.41.44\ PM.png");
+  background-size: cover;
   border: none;
-  /* padding: 5px; */
-  box-shadow: -3px 3px 4px gray;
+  box-shadow: -3px 3px 4px lightslategray;
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.2s ease;
+  color: rgb(107, 194, 248);
+  text-shadow: -2px 1px 0 black;
+  font-weight: bolder;
 }
 
-.btn:hover {
-  background-color: darkred;
+.btn-group button:hover {
+  scale: 1.2;
 }
 
-.btn:active {
-  box-shadow: 0 0 2px darkslategrey;
-  transform: translateY(2px);
+/* Filter component styles */
+.filter-form {
+  display: flex;
+  gap: 1em;
+  background-color: rgb(237, 226, 226);
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px 5px;
 }
