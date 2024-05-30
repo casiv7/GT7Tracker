@@ -2,16 +2,17 @@ body {
   background-image: url("https://image.api.playstation.com/vulcan/ap/rnd/202109/1321/y7iyxoBE8VKotN89QCFhLgLM.png");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
   overflow: hidden;
   color: white;
+  margin: 0;
+  padding: 0;
 }
 
 /* Home page styles */
 .title {
   text-align: center;
   margin-top: 50px;
-  font-size: 36pt;
+  font-size: 4rem;
 }
 
 .btn-group {
@@ -44,10 +45,27 @@ body {
 /* Filter component styles */
 .filter-form {
   display: flex;
+  gap: 1rem;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.dropdowns {
+  box-sizing: border-box;
+  display: flex;
+  flex-grow: 1;
   gap: 1em;
   background-color: rgb(237, 226, 226);
   border-radius: 10px;
-  margin-left: 10%;
-  margin-right: 10%;
   padding: 10px 5px;
+}
+
+/* Stats page styles */
+.stats {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  gap: 1rem;
+  border: 2px solid green;
 }
