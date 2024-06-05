@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-function Dropdowns(props) {
+function Dropdowns(props, ref) {
   const [chosenTrack, setChosenTrack] = useState("");
+
   const [possibleLayouts, setPossibleLayouts] = useState([]);
   const [chosenLayout, setChosenLayout] = useState("");
 
   const [chosenBrand, setChosenBrand] = useState("");
+
   const [possibleModels, setPossibleModels] = useState([]);
   const [chosenModel, setChosenModel] = useState("");
 
@@ -933,6 +935,19 @@ function Dropdowns(props) {
     { brand: "Zagato", cars: ["IsoRivolta Zagato Vision Gran Turismo"] },
   ];
 
+  function reset() {
+    setChosenTrack("");
+    setPossibleLayouts([]);
+    setChosenLayout("");
+    setChosenBrand("");
+    setPossibleModels([]);
+    setChosenModel("");
+  }
+
+  useImperativeHandle(ref, () => ({
+    reset,
+  }));
+
   function handleChange(event) {
     if (event.target.name === "Track") {
       setChosenTrack(event.target.value);
@@ -962,8 +977,8 @@ function Dropdowns(props) {
   }
 
   return (
-    <div className="dropdowns">
-      <FormControl fullWidth>
+    <div className={props.isEntry ? "entry-dropdowns" : "filter-dropdowns"}>
+      <FormControl fullWidth required={props.isEntry} error={props.trackError}>
         <InputLabel>Track</InputLabel>
         <Select
           id="trackId"
@@ -980,7 +995,7 @@ function Dropdowns(props) {
         </Select>
       </FormControl>
 
-      <FormControl fullWidth>
+      <FormControl fullWidth required={props.isEntry} error={props.layoutError}>
         <InputLabel>Layout</InputLabel>
         <Select
           id="layoutId"
@@ -997,7 +1012,7 @@ function Dropdowns(props) {
         </Select>
       </FormControl>
 
-      <FormControl fullWidth>
+      <FormControl fullWidth required={props.isEntry} error={props.brandError}>
         <InputLabel>Brand</InputLabel>
         <Select
           id="brand"
@@ -1014,7 +1029,7 @@ function Dropdowns(props) {
         </Select>
       </FormControl>
 
-      <FormControl fullWidth>
+      <FormControl fullWidth required={props.isEntry} error={props.modelError}>
         <InputLabel>Model</InputLabel>
         <Select
           id="modelId"
@@ -1034,4 +1049,4 @@ function Dropdowns(props) {
   );
 }
 
-export default Dropdowns;
+export default forwardRef(Dropdowns);

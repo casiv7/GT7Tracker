@@ -1,7 +1,9 @@
 import Button from "@mui/material/Button";
 import Dropdowns from "./Dropdowns";
+import { useRef } from "react";
 
 function Filter(props) {
+  const dropdownRef = useRef();
   var track = "";
   var layout = "";
   var brand = "";
@@ -29,18 +31,32 @@ function Filter(props) {
     }
   }
 
+  function resetFilter() {
+    track = "";
+    layout = "";
+    brand = "";
+    model = "";
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("submitted");
     console.log(track);
     console.log(layout);
     console.log(brand);
     console.log(model);
+    dropdownRef.current?.reset();
+    resetFilter();
+    //make the call to db
   }
 
   return (
     <form className="filter-form" onSubmit={handleSubmit}>
-      <Dropdowns region={props.region} giveValues={getDropdownValues} />
+      <Dropdowns
+        region={props.region}
+        isEntry={false}
+        giveValues={getDropdownValues}
+        ref={dropdownRef}
+      />
       <Button
         variant="contained"
         size="large"
