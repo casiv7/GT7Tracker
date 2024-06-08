@@ -28,9 +28,9 @@ app.get("/", async (req, res) => {
 
 //add an entry
 app.post("/add", async (req, res) => {
-    const { track, car, lap_time } = req.body;
+    const { track, layout, brand, model, lap_time } = req.body;
 
-    const entry = await db.query("INSERT INTO stats (track, car, lap_time) VALUES ($1, $2, $3)", [track, car, lap_time]);
+    const entry = await db.query("INSERT INTO stats (track, layout, brand, model, lap_time) VALUES ($1, $2, $3, $4, $5)", [track, layout, brand, model, lap_time]);
     res.json(entry);
 });
 

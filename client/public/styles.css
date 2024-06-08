@@ -67,7 +67,6 @@ body {
   flex-direction: column;
   height: 100dvh;
   gap: 1rem;
-  border: 2px solid green;
 }
 
 .entry {

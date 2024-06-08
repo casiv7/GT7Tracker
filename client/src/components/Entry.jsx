@@ -6,6 +6,7 @@ import { useState } from "react";
 import Dropdowns from "./Dropdowns";
 import { IconButton, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
 function Entry(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ function Entry(props) {
     layout: "",
     brand: "",
     model: "",
-    lapTime: "",
+    lap_time: "",
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -58,32 +59,32 @@ function Entry(props) {
       newErrors.model = true;
     }
     if (
-      !/^([0-5]?[0-9]):([0-5]?[0-9]):([0-9]?[0-9]?[0-9])$/.test(
-        formState.lapTime
+      !/^([0-5]?[0-9]):([0-5]?[0-9])\.([0-9]?[0-9]?[0-9])$/.test(
+        formState.lap_time
       )
     ) {
-      newErrors.lapTime = true;
+      newErrors.lap_time = true;
     }
     setFormErrors(newErrors);
     return newErrors;
   }
 
+  async function addEntry(entry) {
+    const response = await axios.post("http://localhost:4000/add", entry);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("inside entry");
     let errors = validateEntry();
     if (isEmpty(errors)) {
-      console.log("entry added");
-      console.log(formState);
-      console.log(errors);
-      //api call to add
+      addEntry(formState);
       close();
     }
   }
 
   function handleTime(event) {
-    setFormState((prev) => ({ ...prev, lapTime: event.target.value }));
-    delete formErrors.lapTime;
+    setFormState((prev) => ({ ...prev, lap_time: event.target.value }));
+    delete formErrors.lap_time;
   }
 
   function isEmpty(obj) {
@@ -137,7 +138,7 @@ function Entry(props) {
                 label="Time"
                 required
                 fullWidth
-                error={formErrors.lapTime}
+                error={formErrors.lap_time}
                 onBlur={handleTime}
               >
                 Time
